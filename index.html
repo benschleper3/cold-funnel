@@ -33,6 +33,9 @@ src="https://www.facebook.com/tr?id=823154213453673&ev=PageView&noscript=1"
 <title>Creator OS — Book Your Sales Call</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="cold-style.css">
+  <!-- Calendly widget script -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 <body>
 
@@ -126,34 +129,24 @@ src="https://www.facebook.com/tr?id=823154213453673&ev=PageView&noscript=1"
           </div>
           <div class="booking-divider"></div>
 
-          <div id="cal-step">
-            <div class="cal-header">
-              <h4 id="cal-month">March 2026</h4>
-              <div class="cal-nav"><button onclick="prevMonth()">‹</button><button onclick="nextMonth()">›</button></div>
-            </div>
-            <div class="cal-days-header"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
-            <div class="cal-grid" id="cal-grid"></div>
+          <!-- Calendly inline embed -->
+          <div 
+            class="calendly-inline-widget" 
+            data-url="https://calendly.com/creators018/30min?hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=F5A623&text_color=F2F2F2&background_color=161616"
+            style="min-width:100%;height:630px;">
           </div>
-
-          <div class="time-slots" id="time-step">
-            <h5 id="selected-date-label">Available times</h5>
-            <div class="slots-grid" id="slots-grid"></div>
-          </div>
-
-          <div class="booking-form" id="form-step">
-            <div class="form-field"><label>Full name</label><input type="text" placeholder="Your name"></div>
-            <div class="form-field"><label>Email address</label><input type="email" placeholder="you@email.com"></div>
-            <div class="form-field"><label>Instagram handle</label><input type="text" placeholder="@yourhandle"></div>
-            <div class="form-field"><label>What's been your biggest obstacle to landing brand deals?</label><textarea placeholder="Be honest — this helps us make the call useful for you"></textarea></div>
-            <button class="booking-submit" onclick="gtag('event','confirm_booking',{'event_category':'CTA','event_label':'booking_form'});fbq('track','Schedule');confirmBooking();">Confirm My Spot →</button>
-            <p class="booking-note">You'll receive a Zoom link via email within minutes.</p>
-          </div>
-
-          <div id="confirmed-step" style="display:none;">
-            <div class="check">✓</div>
-            <h3 style="font-size:18px;margin-bottom:8px;color:var(--amber)">You're booked.</h3>
-            <p style="font-size:13px;color:var(--text-dim);line-height:1.6">Check your email for the Zoom link. Jake will see you on the call.</p>
-          </div>
+          <script>
+            /* Fire GA4 + Meta Pixel when Calendly booking is confirmed */
+            window.addEventListener('message', function(e) {
+              if (e.data.event && e.data.event === 'calendly.event_scheduled') {
+                gtag('event', 'confirm_booking', {
+                  'event_category': 'CTA',
+                  'event_label': 'calendly'
+                });
+                fbq('track', 'Schedule');
+              }
+            });
+          </script>
         </div>
       </div>
     </div>
