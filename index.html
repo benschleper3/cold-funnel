@@ -62,18 +62,19 @@ src="https://www.facebook.com/tr?id=823154213453673&ev=PageView&noscript=1"
 <div class="vsl-section">
   <p class="vsl-label">Watch this first</p>
   <div class="vsl-wrapper">
-    <div class="vsl-inner" onclick="gtag('event','vsl_play',{'event_category':'Video','event_label':'vsl_main'});fbq('track','ViewContent');">
-      <!-- REPLACE 400ca9c0b53249558f257eecad13f451 with your actual Loom video ID e.g. abc123def456 -->
-      <iframe
-        src="https://www.loom.com/embed/400ca9c0b53249558f257eecad13f451?autoplay=0"
-        frameborder="0"
-        webkitallowfullscreen
-        mozallowfullscreen
-        allowfullscreen
-        style="position:absolute;top:0;left:0;width:100%;height:100%;">
-      </iframe>
+    <div class="vsl-inner">
+      <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+        <iframe 
+          src="https://www.loom.com/embed/400ca9c0b53249558f257eecad13f451" 
+          frameborder="0" 
+          webkitallowfullscreen 
+          mozallowfullscreen 
+          allowfullscreen 
+          onload="gtag('event','vsl_play',{'event_category':'Video','event_label':'vsl_main'});fbq('track','ViewContent');"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+        </iframe>
+      </div>
     </div>
-  </div>
   <p class="vsl-below">Watched it? <strong>Book your call below →</strong></p>
 </div>
 
