@@ -174,18 +174,19 @@ footer a:hover{color:var(--amber);}
 
 
 /* CAROUSEL */
-.carousel-wrap{position:relative;max-width:360px;margin:40px auto 0;display:flex;flex-direction:column;align-items:center;gap:16px;}
-.carousel-track-wrap{width:100%;overflow:hidden;border-radius:16px;}
-.carousel-track{display:flex;transition:transform 0.4s ease;}
-.carousel-slide{min-width:100%;flex-shrink:0;}
-.carousel-slide img{width:100%;height:auto;display:block;border-radius:16px;object-fit:cover;}
-.carousel-btn{position:absolute;top:50%;transform:translateY(-60%);background:rgba(255,255,255,0.08);border:1px solid var(--border);color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;z-index:2;}
+.carousel-wrap{position:relative;max-width:320px;margin:40px auto 0;display:flex;flex-direction:column;align-items:center;gap:14px;}
+.carousel-track-wrap{width:100%;overflow:hidden;border-radius:16px;background:var(--bg3);}
+.carousel-track{display:flex;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);}
+.carousel-slide{min-width:100%;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.carousel-slide img{width:100%;height:auto;max-height:420px;object-fit:contain;display:block;border-radius:16px;}
+.carousel-btn{position:absolute;top:45%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:1px solid var(--border);color:var(--text);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;z-index:2;backdrop-filter:blur(4px);}
 .carousel-btn:hover{background:var(--amber);color:#000;border-color:var(--amber);}
-.carousel-prev{left:-18px;}
-.carousel-next{right:-18px;}
-.carousel-dots{display:flex;gap:6px;margin-top:4px;}
+.carousel-prev{left:-17px;}
+.carousel-next{right:-17px;}
+.carousel-dots{display:flex;gap:6px;}
 .carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--border);border:none;cursor:pointer;padding:0;transition:all 0.2s;}
 .carousel-dot.active{background:var(--amber);width:18px;border-radius:3px;}
+@media(max-width:480px){.carousel-wrap{max-width:100%;padding:0 8px;}.carousel-slide img{max-height:360px;}}
 
 .qualify-section{max-width:620px;margin:0 auto;padding:96px 24px 72px;background:var(--bg);}
 .qform-card{background:var(--bg3);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 0 40px rgba(0,0,0,0.3);}
