@@ -401,17 +401,11 @@ function submitForm() {
     result: qDisqualified ? 'Disqualified' : 'Qualified'
   };
 
-  // Save to Notion via Claude API with Notion MCP
-  fetch('https://api.anthropic.com/v1/messages', {
+  // Send to GHL webhook
+  fetch('https://services.leadconnectorhq.com/hooks/aPifziyJn9izEE9FGrD9/webhook-trigger/9b0c795d-b867-49bd-a2b9-5f90ab2aec44', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1000,
-      system: 'Save this form data to Notion database with data source ID 6a914000-21b3-4298-9ed0-83c38995ba88. Create a page with these exact property names: Name (title), Email, Instagram Handle, Situation, Time Stuck, Biggest Frustration, 30-60 Day Goal, UGC Awareness, Hours Per Week, Investment Range, Follow Through, Timezone, Result. Map the data accordingly. Reply only with "saved".',
-      messages: [{ role: 'user', content: JSON.stringify(payload) }],
-      mcp_servers: [{ type: 'url', url: 'https://mcp.notion.com/mcp', name: 'notion-mcp' }]
-    })
+    body: JSON.stringify(payload)
   })
   .catch(function(){})
   .finally(function(){ showDone(); });
