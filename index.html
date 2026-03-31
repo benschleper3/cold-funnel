@@ -346,9 +346,14 @@ footer a:hover{color:var(--amber);}
     </div>
   </div>
 
-  <!-- Post-form: booking shown if qualified, quiet thank you if not -->
   <div id="q-done" style="display:none;text-align:center;padding:40px 24px;">
     <p style="font-size:15px;color:var(--text-dim);">You are all set. Scroll down to book your call.</p>
+  </div>
+
+  <div id="q-not-fit" style="display:none;text-align:center;padding:48px 24px;max-width:520px;margin:0 auto;">
+    <p style="font-size:28px;margin-bottom:16px;">🙏</p>
+    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--text);margin-bottom:14px;">Thanks for being honest.</h3>
+    <p style="color:var(--text-dim);font-size:15px;line-height:1.8;">Based on your answers it looks like the timing might not be quite right for this cohort. The program is a $997 investment and we want to make sure everyone who joins is set up to get a real return on that. When your situation changes in the future the door is open.</p>
   </div>
 </div>
 
@@ -399,18 +404,18 @@ function submitForm() {
   document.getElementById('qbar').style.width = '100%';
 
   var payload = {
-    'first_name': qAnswers['name'] || '',
+    firstName: qAnswers['name'] || '',
     email: qAnswers['email'] || '',
-    'situation': qAnswers['situation'] || '',
-    'time_stuck': qAnswers['time_stuck'] || '',
-    'biggest_frustration': qAnswers['biggest_frustration'] || '',
-    'goal': qAnswers['goal'] || '',
-    'ugc_awareness': qAnswers['ugc_awareness'] || '',
-    'hours_per_week': qAnswers['hours_per_week'] || '',
-    'investment_range': qAnswers['investment_range'] || '',
-    'follow_through': qAnswers['follow_through'] || '',
-    'timezone': qAnswers['timezone'] || '',
-    'application_result': qDisqualified ? 'Disqualified' : 'Qualified'
+    situation: qAnswers['situation'] || '',
+    timeStuck: qAnswers['time_stuck'] || '',
+    biggestFrustration: qAnswers['biggest_frustration'] || '',
+    goal: qAnswers['goal'] || '',
+    ugcAwareness: qAnswers['ugc_awareness'] || '',
+    hoursPerWeek: qAnswers['hours_per_week'] || '',
+    investmentRange: qAnswers['investment_range'] || '',
+    followThrough: qAnswers['follow_through'] || '',
+    timezone: qAnswers['timezone'] || '',
+    applicationResult: qDisqualified ? 'Disqualified' : 'Qualified'
   };
 
   // Send to GHL webhook
@@ -440,6 +445,10 @@ function showDone() {
     if (typeof gtag !== 'undefined') gtag('event','form_qualified',{'event_category':'Form','event_label':'passed'});
     if (typeof fbq !== 'undefined') fbq('track','Lead');
   } else {
+    document.getElementById('q-not-fit').style.display = 'block';
+    setTimeout(function(){
+      window.scrollTo({top: document.getElementById('q-not-fit').offsetTop - 80, behavior: 'smooth'});
+    }, 100);
     if (typeof gtag !== 'undefined') gtag('event','form_disqualified',{'event_category':'Form','event_label':'investment_too_low'});
   }
 }
